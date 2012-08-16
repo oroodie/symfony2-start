@@ -1,0 +1,37 @@
+Ponca\AdminBundle\Entity\User:
+  type: entity
+  table: 'User'
+  #oneToOne:
+   # role:
+    #  targetEntity: Role
+     # joinColumn:
+      #  name: role_name
+       # referencedColumnName: role
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    username:
+      type: string
+      length: '25'
+      unique: true
+    salt:
+      type: string
+      length: '32'
+    password:
+      type: string
+      length: '40'
+    email:
+      type: string
+      length: '60'
+      unique: true
+    isActive:
+      type: boolean
+      length: null
+    role:
+      type: string
+      length: 20
+      column: role_name
+  lifecycleCallbacks: {  }

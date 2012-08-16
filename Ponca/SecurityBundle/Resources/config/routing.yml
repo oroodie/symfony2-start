@@ -1,0 +1,10 @@
+PoncaSecurityBundle_homepage:
+    pattern:  /ponca/home/{name}
+    defaults: { _controller: PoncaSecurityBundle:Default:index }
+
+ponca_login:
+    pattern:  /ponca/login
+    defaults: { _controller: PoncaSecurityBundle:Security:login }
+    
+ponca_login_check:
+    pattern:   /ponca/login_check    

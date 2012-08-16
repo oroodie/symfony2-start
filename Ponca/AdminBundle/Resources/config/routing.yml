@@ -1,0 +1,14 @@
+#login    
+login_admin:
+    pattern:   /admin/login
+    defaults:  { _controller: PoncaAdminBundle:Default:login }
+#login    
+login_check:
+    pattern:   /admin/login_check
+    
+PoncaAdminBundle_homepage:
+    pattern:  /admin/{name}
+    defaults: { _controller: PoncaAdminBundle:Default:index }
+ 
+  
+

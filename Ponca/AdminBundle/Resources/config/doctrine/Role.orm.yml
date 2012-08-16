@@ -1,0 +1,13 @@
+Ponca\AdminBundle\Entity\Role:
+  type: entity
+  table: 'user_roles'
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    role:
+      type: string
+      length: '30'
+  lifecycleCallbacks: {  }

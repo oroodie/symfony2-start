@@ -1,0 +1,12 @@
+
+{% if app.user %}
+<hr/>
+<p>Username: {{ app.user.username }}</p>
+<hr/>
+{% endif %}
+
+Hello {{ name }}!
+
+{% if is_granted('ROLE_ADMIN') %}
+    <hr /> <a href="#">Delete</a>
+{% endif %}

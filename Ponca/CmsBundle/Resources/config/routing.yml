@@ -1,0 +1,7 @@
+PoncaCmsBundle_homepage:
+    pattern:  /cms/hello/{name}
+    defaults: { _controller: PoncaCmsBundle:Default:index }
+    
+cms_add_user:
+    pattern:  /cms/add-user
+    defaults: { _controller: PoncaCmsBundle:User:addUser }

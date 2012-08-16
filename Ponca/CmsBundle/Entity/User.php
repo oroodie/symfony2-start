@@ -1,0 +1,291 @@
+<?php
+
+namespace Ponca\CmsBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Ponca\CmsBundle\Entity\User
+ *
+ * @ORM\Table(name="cms_users")
+ * @ORM\Entity(repositoryClass="Ponca\CmsBundle\Entity\UserRepository")
+ */
+class User
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string $last_name
+     *
+     * @ORM\Column(name="last_name", type="string", length=50)
+     */
+    private $last_name;
+
+    /**
+     * @var string $first_name
+     *
+     * @ORM\Column(name="first_name", type="string", length=50)
+     */
+    private $first_name;
+
+    /**
+     * @var string $username
+     *
+     * @ORM\Column(name="username", type="string", length=25, unique="true")
+     */
+    private $username;
+    
+    /**
+     * @var string $salt
+     *
+     * @ORM\Column(name="salt", type="string", length=32)
+     */
+    private $salt;  
+    
+    /**
+     * @var string $password
+     *
+     * @ORM\Column(name="password", type="string", length=40)
+     */
+    private $password;
+    
+    /**
+     * @var string $email
+     *
+     * @ORM\Column(name="email", type="string", length=60, unique="true")
+     */
+    private $email;  
+    
+    /**
+     * @var string $isActive
+     *
+     * @ORM\Column(name="is_active", type="integer", length="1")
+     */
+    private $isActive;     
+
+    /**
+     * @var datetime $date_added
+     *
+     * @ORM\Column(name="date_added", type="datetime")
+     */
+    private $date_added;
+
+    /**
+     * @var integer $group
+     *
+     * @ORM\ManyToOne(targetEntity="Ponca\CmsBundle\Entity\Groups", inversedBy="members")
+     * @ORM\JoinColumn(name="fk_group_id", referencedColumnName="id")
+     */
+    private $group;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set last_name
+     *
+     * @param string $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->last_name = $lastName;
+    }
+
+    /**
+     * Get last_name
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+    /**
+     * Set first_name
+     *
+     * @param string $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->first_name = $firstName;
+    }
+
+    /**
+     * Get first_name
+     *
+     * @return string 
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+
+    /**
+     * Set date_added
+     *
+     * @param datetime $dateAdded
+     */
+    public function setDateAdded($dateAdded)
+    {
+        $this->date_added = $dateAdded;
+    }
+
+    /**
+     * Get date_added
+     *
+     * @return datetime 
+     */
+    public function getDateAdded()
+    {
+        return $this->date_added;
+    }
+
+    /**
+     * Set fk_group_id
+     *
+     * @param integer $fkGroupId
+     */
+    public function setGroup($fkGroupId)
+    {
+        $this->group = $fkGroupId;
+    }
+
+    /**
+     * Get fk_group_id
+     *
+     * @return integer 
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string 
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;        
+        
+    }
+    
+    public function setUserPassword()
+    {
+        $this->password = hash('sha1',$this->password."{{$this->salt}}");
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param string $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return string 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+    
+    public function isPasswordValid()
+    {        
+        return !(in_array($this->password, array($this->username, $this->first_name, $this->last_name)));           
+    }
+       
+}

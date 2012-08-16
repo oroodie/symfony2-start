@@ -1,0 +1,24 @@
+Ponca\CmsBundle\Entity\User:
+  properties:
+    username:
+                - MinLength: { limit:4, message:"Username must be at list 4 characteres." }
+    email:
+                - NotBlank: ~
+                - Email: { message:"The email value: {{ value }} is not a valid email", checkMX:true }
+    password:
+                - Regex: { pattern: "/(\d[a-zA-Z])|([a-zA-Z]\d)/", match: "true", message: "The Password must contain numbers and letters." }
+                - MinLength: { limit:7, message:"Password must be at list 7 characteres." }
+    first_name:
+                - MaxLength: { limit:50, message:"First Name must not excede 50 characteres!" }
+                - NotBlank: { message:"Please, enter the First Name!" }
+    last_name:
+                - MaxLength: { limit:50, message:"Last Name must not excede 50 characteres!" }
+                - NotBlank: { message:"Please, enter the Last Name!" }
+    group:
+                - NotBlank: { message:"Please, select a group." }
+  getters:
+    passwordValid:
+                - "True": { message:"The password can not match your username or first/last name!" }
+  constraints:
+                - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: { fields:email, message:"This email address is already registered." }
+                - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: { fields:username, message:"This username is already registered." }

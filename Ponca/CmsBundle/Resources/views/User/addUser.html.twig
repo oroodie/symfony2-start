@@ -1,0 +1,48 @@
+{% extends '::cms_base.html.twig' %}
+
+{% block title %}Cms Add User :) {% endblock %}
+
+{% block body %}
+
+<div class="center"><div class="login">
+<h1>Add User - Entities</h1>
+
+{% if app.session.hasFlash('notice') %}
+    <h3>{{ app.session.flash('notice') }}</h3>
+{% endif %}
+
+<form action={{ path('cms_add_user') }} method="post" {{ form_enctype(form) }} class="AddUserForm">
+    {% if app.session.hasFlash('error') %}
+    <h3>ERROR: {{ app.session.flash('error') }}</h3>
+    {% endif %}
+    {{ form_errors(form) }}
+<br><br>
+    {{ form_errors(form.first_name) }}        
+    {{ form_label(form.first_name, '*First Name: ') }}
+    {{ form_widget(form.first_name) }}
+<br><br>  
+    {{ form_errors(form.last_name) }}
+    {{ form_label(form.last_name, '*Last Name: ') }}
+    {{ form_widget(form.last_name) }}
+<br><br>         
+    {{ form_errors(form.username) }}
+    {{ form_label(form.username, '*User Name: ') }}
+    {{ form_widget(form.username) }}
+<br><br> 
+    {{ form_errors(form.email) }}
+    {{ form_label(form.email, '*Email: ') }}
+    {{ form_widget(form.email) }}
+<br><br>         
+    {{ form_label(form.password, '') }}
+    {{ form_widget(form.password) }}
+<br><br>   
+    {{ form_errors(form.group) }}
+    {{ form_label(form.group, '*Select Group: ') }}
+    {{ form_widget(form.group, {'attr': {'class': 'select_group'}, 'empty_value': '-- Add to Group --' }) }}
+<br><br>         
+    {{ form_rest(form) }}
+<label>&nbsp;</label>   
+    <input type="Submit" value="Add User!">
+    </form>
+    </div></div>
+{% endblock %}
