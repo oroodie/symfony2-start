@@ -1,0 +1,12 @@
+username.MinLength: Username must be at list 4 characteres.
+email.Email: "The email value: {{ value }} is not a valid email"
+password.Regex: "The Password must contain numbers and letters."
+password.MinLength: Password must be at list 7 characteres.
+first_name.MaxLength: First Name must not excede 50 characteres!
+first_name.NotBlank: Please, enter the First Name!
+last_name.MaxLength: Last Name must not excede 50 characteres!
+last_name.NotBlank: Please, enter the Last Name!
+group.NotBlank: Please, select a group.
+getters.passwordValid: The password can not match your username or first/last name!
+constraints.unique.email: This email address is already registered.
+constraints.unique.username: This username is already registered.
