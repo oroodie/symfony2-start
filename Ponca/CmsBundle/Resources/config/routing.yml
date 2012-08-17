@@ -3,5 +3,7 @@ PoncaCmsBundle_homepage:
     defaults: { _controller: PoncaCmsBundle:Default:index }
     
 cms_add_user:
-    pattern:  /cms/add-user
+    pattern:  /{_locale}/cms/add-user
     defaults: { _controller: PoncaCmsBundle:User:addUser }
+    requirements:
+        _locale: en|fr|de

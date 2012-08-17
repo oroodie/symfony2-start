@@ -5,7 +5,7 @@
 {% block body %}
 
 <div class="center"><div class="login">
-<h1>Add User - Entities</h1>
+<h1>{% trans %}title{% endtrans %}</h1>
 
 {% if app.session.hasFlash('notice') %}
     <h3>{{ app.session.flash('notice') }}</h3>
@@ -38,11 +38,11 @@
 <br><br>   
     {{ form_errors(form.group) }}
     {{ form_label(form.group, '*Select Group: ') }}
-    {{ form_widget(form.group, {'attr': {'class': 'select_group'}, 'empty_value': '-- Add to Group --' }) }}
+    {{ form_widget(form.group, {'attr': {'class': 'select_group'}, 'empty_value': 'select.group'|trans   }) }}
 <br><br>         
     {{ form_rest(form) }}
 <label>&nbsp;</label>   
-    <input type="Submit" value="Add User!">
+    <input type="Submit" value="{% trans %}button.add-user{% endtrans %}">
     </form>
     </div></div>
 {% endblock %}
